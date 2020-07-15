@@ -1,0 +1,219 @@
+* {
+    font-family: Raleway;
+    color: #343434;
+}
+
+// buttons 
+.orange-btn {
+    background: orange;
+}
+
+.orange-btn:hover {
+    background: #f68000;
+}
+
+.main-header {
+    background: url(../img/home-image.jpg);
+    background-position: center;
+    background-size: cover;
+    height: 100vh;
+    margin-top: -5%;
+    .primary-overlay {
+        background: rgba(0, 0, 0, 0.8);
+        height: 100%;
+
+        h1 {
+            font-size: 90px !important;
+            color: white;
+            margin-top: 10%;
+            letter-spacing: 5px;
+
+            span {
+                color: #f68000;
+            }
+        }
+        p {
+            font-size: 28px;
+            color: white;
+            margin-top: -1%;
+            span {
+                color:orange;
+            }
+        }
+    }
+}
+
+section#about {
+    padding-top: 8%;
+    padding-bottom: 10%;
+    h1 {
+        
+        font-size: 50px;
+        span {
+            color:#f68000;
+        }
+    }
+
+    p {
+        font-size: 19px;
+
+        span {
+            color: #f68000;
+        }
+    }
+}
+
+section#services {
+    padding-bottom: 10%;
+    padding-top: 8%;
+    
+    .card {
+        margin-top: 50px;
+        font-size: 16px;
+        p.title {
+            color: #f68000;
+            font-size: 17px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+    }
+}
+
+section#testimonials {
+    padding-top: 8%;
+    padding-bottom: 5%;
+    background: orange;
+
+    h3 {
+        margin-bottom: 50px;
+        color: white;
+    }
+}
+
+section#contact {
+    padding-top: 2%;
+    padding-bottom: 2%;
+
+    p {
+        font-size: 17px;
+    }
+}
+
+.footer {
+    .container {
+        color: white;
+    }
+    width: 100%;
+    background: #292929;
+    height: 45px;
+    line-height: 45px;
+    
+}
+
+// login style
+section#login {
+    padding-top: 8%;
+    .ui.form {
+        margin: 0 auto;
+        max-width: 600px;
+        text-align: center;
+        .field {
+            input {
+                width: 70% !important;
+            }
+        }
+    }
+}
+
+section#signup {
+    padding-top: 8%;
+    .ui.form {
+        margin: 0 auto;
+        max-width: 600px;
+        text-align: center;
+        .field {
+            label {
+                text-align: left;
+                margin-top: 5px;
+            }
+            input {
+                width: 100%;
+            }
+        }
+    }
+}
+
+
+// header 
+
+nav {
+    a.brand-logo {
+        font-size: 20px;
+    }
+    ul li {
+        a:hover {
+            color: orange;
+            transition: all 0.5s ease;
+        }
+    }
+    ul li.active {
+        a {
+            color: orange !important;
+        } 
+    }
+}
+
+// products
+
+section#products {
+    padding-top: 3%;
+    
+    .ui.container {
+        margin: 0 auto !important;
+        
+        .row {
+            margin: 0 auto;
+            .message {
+                margin: 0 auto;
+                margin-bottom: 30px;
+            }
+            .col {
+                max-width: 260px;
+                margin-left: 5px;
+                margin: 0 auto;
+            }
+        }
+
+        .card {
+            padding: 10px;
+            p {
+                color: #343434;
+                font-weight: 600;
+                font-size: 16px;
+            }
+            img {
+                width: 150px;
+                height: 150px;
+            }
+            input {
+                text-align: right;
+                max-width: 80px;
+                width: 40% !important;
+            }
+            button {
+                
+                font-family: Raleway;
+            }
+        }
+    }
+}
+
+section#cart {
+    padding-top: 3%;
+}
+
+section#dashboard {
+    padding-top: 3%;
+    padding-bottom: 3%;
+}
