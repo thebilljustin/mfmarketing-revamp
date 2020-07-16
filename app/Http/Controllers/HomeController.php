@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Order;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -23,6 +25,16 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('user.dashboard');
+        $orders = Order::where('user_id', Auth::user()->id)
+                            ->where('status', 'delivered')
+                            ->get();
+
+        $pending = Order::where('user_id', Auth::user()->id)
+        ->where('status', 'pending')
+        ->get();
+       
+        $count = $pending->count();
+
+        return view('user.dashboard', compact('orders', 'count'));
     }
 }

@@ -40,13 +40,14 @@ class OrdersController extends Controller
         $data['status'] = 'pending';
         
         Order::create($data);
-
+        
         // update cart status
         foreach($items as $new_item) {
-            $cart = Cart::find($new_item->id)->first();
-            $cart_status = ['status' => 'confirmed'];
-            $cart->update($cart_status);
+            $cart = Cart::where('id', $new_item->id)->first();
+            $cart->status = 'confirmed';
+            $cart->save();
         };
-        // updates only one
+       
+        return redirect('/dashboard');
     }
 }

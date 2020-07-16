@@ -7,11 +7,15 @@
 <section id="dashboard">
     <div class="ui container">
         <div class="container">
-            <div class="ui orange message white">
-                You have an order pending for delivery. <a href="" class="orange-text" style="font-weight: 600;">Click here</a> to check its status.
-            </div>
-            <form action="" class="ui very padded form segment">
-
+            <?php
+                if ($count > 0) {
+                    echo '<div class="ui orange message white">
+                            You have an order pending for delivery. <a href="" class="orange-text" style="font-weight: 600;">Click here</a> to check its status.
+                        </div>';
+                }
+            ?>
+            <form action="" method="post" class="ui very padded form segment">
+                @method('PATCH')
                 <!-- personal info  -->
                 <h4 class="ui dividing header">Account Information</h4>
                 <div class="three fields">
@@ -42,12 +46,10 @@
                         <input type="password" name="confirmPassword" placeholder="Confirm Password">
                     </div>
                 </div>
-                <button class="ui orange button right" name="updateBtn">Update</button>
-                <button class="ui button right" name="clearBtn">Clear Fields</button>
-                <br /><br />
+                
 
                 <!-- adding address  -->
-                <h4 class="ui dividing header">Add Delivery Address</h4>
+                <h4 class="ui dividing header">Address</h4>
                 <div class="two fields">
                     <div class="field">
                         <label>Street</label>
@@ -68,27 +70,28 @@
                         <input type="text" value="{{ Auth()->user()->province }}" name="province">
                     </div>
                 </div>
-                <button class="ui orange button right" name="addAddressBtn">Add Address</button>
-                <br /><br /><br />
-                <!-- delivery information  -->
-                <h4 class="ui dividing header">Delivery Information</h4>
-                <div class="ui middle aligned divided list">
-                    <div class="item">
-                        <div class="right floated content">
-                            <button class="ui orange icon button" name="viewAddressBtn" value=""><i class="cart icon"></i></button>
-                        </div>
-                        <p style="padding-top: 5px;">Blk 3 Lot 57 Phase 9, Golden City, Dasmarinas, Cavite</p>
-                        
-                    </div>
-                    <div class="item">
-                        <div class="right floated content">
-                            <button class="ui orange icon button"><i class="cart icon"></i></button>
-                        </div>
-                        <p style="padding-top: 5px;">Blk 3 Lot 57 Phase 9, Golden City, Dasmarinas, Cavite</p>
-                    </div>
-                </div>
+                @csrf
+                <button class="ui orange button right" name="updateBtn">Update</button>
+                <button class="ui button right" name="clearBtn">Clear Fields</button>
+                <br /><br />
+                
             </form>
-            
+            <!-- delivery information  -->
+            <h4 class="ui dividing header">Previous Transactions</h4>
+            <div class="ui comments">
+                @forelse ($orders as $ordered)
+                    <div class="comment" style="border-left: 5px solid orange !important; padding-left: 10px;">
+                        <div class="content">
+                            <a href="" class="author">{{ $ordered->delivery_address }}</a>
+                            <div class="text">Total Price: P {{ $ordered->total_price }} | Status: Delivered  | {{ $ordered->delivery_date }} </div>
+                        </div>
+                    </div>
+                @empty
+                    <div class="ui small info message"><div class="ui small header">You have no previous orders with us yet.</div></div>
+                @endforelse
+                
+                
+            </div>
         </div>
     </div>
 </section>
