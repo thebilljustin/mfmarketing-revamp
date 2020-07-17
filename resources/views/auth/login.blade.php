@@ -33,7 +33,7 @@
           <input type="password" name="password" placeholder="Password" autocomplete="current-password">
         </div>
         <p style="font-size: 15px; font-weight: 600;"><a href="forgot&password.html" class="orange-text darken-4">Forgot password?</a></p>
-        <button class="ui button" type="submit">Sign Up</button>
+        <a href="/register" class="ui button" type="submit">Sign Up</a>
         <button class="ui orange button" type="submit">Sign In</button>
       </form>
     </div>

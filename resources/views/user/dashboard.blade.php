@@ -7,14 +7,13 @@
 <section id="dashboard">
     <div class="ui container">
         <div class="container">
-            <?php
-                if ($count > 0) {
-                    echo '<div class="ui orange message white">
-                            You have an order pending for delivery. <a href="" class="orange-text" style="font-weight: 600;">Click here</a> to check its status.
-                        </div>';
-                }
-            ?>
-            <form action="" method="post" class="ui very padded form segment">
+            @if ($count > 0)
+            <div class="ui orange message white">
+                You have an order pending for delivery. <a href="{{ route('orders.index') }}" class="orange-text" style="font-weight: 600;">Click here</a> to check its status.
+            </div>
+            @endif
+            
+            <form action="/dashboard/{{ Auth()->user()->id }}" method="post" class="ui very padded form segment">
                 @method('PATCH')
                 <!-- personal info  -->
                 <h4 class="ui dividing header">Account Information</h4>
@@ -22,14 +21,17 @@
                     <div class="field">
                         <label>Firstname</label>
                         <input type="text" name="firstname" value="{{ Auth()->user()->firstname }}">
+                        @error('firstname')<p style="color: red;">{{ $message }}</p>@enderror
                     </div>
                     <div class="field">
                         <label>Lastname</label>
                         <input type="text" name="lastname" value="{{ Auth()->user()->lastname }}">
+                        @error('lastname')<p style="color: red;">{{ $message }}</p>@enderror
                     </div>
                     <div class="field">
                         <label>Email Address</label>
                         <input type="text" name="email" value="{{ Auth()->user()->email }}">
+                        @error('email')<p style="color: red;">{{ $message }}</p>@enderror
                     </div>
                 </div>
                 <div class="field">
@@ -37,13 +39,13 @@
                 </div>
                 <div class="three fields">
                     <div class="field">
-                        <input type="password" name="currentPassword" placeholder="Current Password">
+                        <input type="password" name="current_password" placeholder="Current Password">
                     </div>
                     <div class="field">
-                        <input type="password" name="newPassword" placeholder="New Password">
+                        <input type="password" name="new_password" placeholder="New Password">
                     </div>
                     <div class="field">
-                        <input type="password" name="confirmPassword" placeholder="Confirm Password">
+                        <input type="password" name="confirm_password" placeholder="Confirm Password">
                     </div>
                 </div>
                 
@@ -54,20 +56,24 @@
                     <div class="field">
                         <label>Street</label>
                         <input type="text" value="{{ Auth()->user()->street }}" name="street">
+                        @error('street')<p style="color: red;">{{ $message }}</p>@enderror
                     </div>
                     <div class="field">
                         <label>Barangay</label>
                         <input type="text" value="{{ Auth()->user()->barangay }}" name="barangay">
+                        @error('barangay')<p style="color: red;">{{ $message }}</p>@enderror
                     </div>
                 </div>
                 <div class="two fields">
                     <div class="field">
                         <label>Municipality</label>
                         <input type="text" value="{{ Auth()->user()->municipality }}" name="municipality">
+                        @error('municipality')<p style="color: red;">{{ $message }}</p>@enderror
                     </div>
                     <div class="field">
                         <label>City/Province</label>
                         <input type="text" value="{{ Auth()->user()->province }}" name="province">
+                        @error('province')<p style="color: red;">{{ $message }}</p>@enderror
                     </div>
                 </div>
                 @csrf
@@ -82,7 +88,7 @@
                 @forelse ($orders as $ordered)
                     <div class="comment" style="border-left: 5px solid orange !important; padding-left: 10px;">
                         <div class="content">
-                            <a href="" class="author">{{ $ordered->delivery_address }}</a>
+                            <a href="/orders/{{ $ordered->id }}" class="author">{{ $ordered->delivery_address }}</a>
                             <div class="text">Total Price: P {{ $ordered->total_price }} | Status: Delivered  | {{ $ordered->delivery_date }} </div>
                         </div>
                     </div>

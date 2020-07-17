@@ -10,6 +10,33 @@ use Illuminate\Support\Facades\DB;
 
 class OrdersController extends Controller
 {
+    public function index() {
+        if (Auth::user()->account_type < 1) 
+        {
+            $orders = Order::where('user_id', Auth::user()->id)
+                            ->where('status', 'pending')
+                            ->get();
+        }
+        else 
+        {
+            if ($_GET['status'] == 'all') 
+            {
+                $orders = Order::all();
+            }
+            else if ($_GET['status'] == 'pending' || $_GET['status'] == 'delivered') {
+                $orders = Order::where('status', $_GET['status'])->get();
+            }
+            
+        }
+
+        return view('orders.index', compact('orders'));
+    }
+
+    public function show(Order $order) 
+    {   
+        return view('orders.show', compact('order'));
+    }
+
     public function store(Request $request) {
         $user_id = Auth::user()->id;
         $orders = '';
@@ -49,5 +76,13 @@ class OrdersController extends Controller
         };
        
         return redirect('/dashboard');
+    }
+
+    public function update(Order $order, Request $request)
+    {
+        $order->status = $request->status;
+        $order->save();
+
+        return redirect('/orders');
     }
 }

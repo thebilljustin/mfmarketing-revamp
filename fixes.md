@@ -5,3 +5,8 @@
 2. updated user dashboard
         - pending deliveries
         - added previous transactions/orders tracker
+        - update of account info
+        - hash on password update
+3. added orders UI
+        - index
+        - admin status change on show
