@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\DB;
 class OrdersController extends Controller
 {
     public function index() {
+        $order_status = ['pending', 'delivered', 'unclaimed', 'cancelled'];
+
         if (Auth::user()->account_type < 1) 
         {
             $orders = Order::where('user_id', Auth::user()->id)
@@ -23,7 +25,7 @@ class OrdersController extends Controller
             {
                 $orders = Order::all();
             }
-            else if ($_GET['status'] == 'pending' || $_GET['status'] == 'delivered') {
+            else if (in_array($_GET['status'], $order_status)) {
                 $orders = Order::where('status', $_GET['status'])->get();
             }
             

@@ -5,8 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>MF Marketing | Sign In</title>
-    <link rel="stylesheet" href="{{ asset('css/semantic-form.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/semantic-misc.css') }}">
+    <link href="{{ asset('css/semantic.min.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/materialize.css') }}">
     <link rel="stylesheet" href="{{ asset('css/main.css') }}">
     <style>

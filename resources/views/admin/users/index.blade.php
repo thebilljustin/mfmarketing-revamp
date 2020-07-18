@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.app')
 
 @section('content')
 <section id="dashboard">
@@ -21,8 +21,8 @@
             <tbody> 
                 @forelse ($users as $user)
                 <tr>
-                    <td class="three wide"><a href="/admin/users/{{ $user->id }}">{{ $user->name }}</a></td>
-                    <td class="three wide"><a href="/admin/users/{{ $user->id }}">{{ $user->name }}</a></td>
+                    <td class="three wide"><a href="/admin/users/{{ $user->id }}">{{ $user->lastname }}</a></td>
+                    <td class="three wide"><a href="/admin/users/{{ $user->id }}">{{ $user->firstname }}</a></td>
                     <td class=" center aligned">{{ $user->email }}</td>
                     <td class=" center aligned">{{ $user->street }}</td>
                     <td class=" center aligned">{{ $user->barangay }}</td>

@@ -37,7 +37,7 @@ Route::post('/store', 'StoreController@add_to_cart');
 
 // cart
 Route::resource('cart', 'CartsController');
-Route::resource('orders', 'OrdersController');
+// Route::resource('orders', 'OrdersController');
 
 // orders
 Route::resource('/orders', 'OrdersController');

@@ -23,15 +23,24 @@
     {{-- <link href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css" rel="stylesheet"> --}}
 </head>
 <body>
-        <div class="navbar-fixed">
+        <div class="navbar-fixed"> 
             <nav class="grey darken-3">
                 <div class="nav-wrapper container">
                     <a href="#" class="brand-logo left">MF Marketing</a>
                     <a href="#" data-activates="side-nav" class="button-collapse right"><i class="material-icons white-text hide-on-large-only">menu</i></a>
                     <ul class="hide-on-med-and-down right">
-                        <li><a href="/dashboard">Dashboard</a></li>
-                        <li><a href="/store?category=all">Store</a></li>
-                        <li><a href="{{ route('cart.index') }}">Cart</a></li>
+                        @if (Auth()->user()->account_type > 0)
+                            <li><a href="/admin">Dashboard</a></li>
+                            <li><a href="/admin/users">Users</a></li>
+                            <li><a href="{{ route('products.index') }}">Inventory</a></li>
+                            <li><a href="/admin/sales">Sales</a></li>
+                            <li><a href="{{ route('products.create') }}">Products</a></li>
+                        @else 
+                            <li><a href="/dashboard">Dashboard</a></li>
+                            <li><a href="/store?category=all">Store</a></li>
+                            <li><a href="{{ route('cart.index') }}">Cart</a></li>
+                        @endif
+                        <li><a href="/orders?status=all">Orders</a></li>
                         <li>
                             <a href="{{ route('logout') }}"
                                 onclick="event.preventDefault();
